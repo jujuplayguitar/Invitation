@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Une petite invitation ❤️</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(135deg,#fff1f5,#f4ecff);color:#292333;display:flex;align-items:center;justify-content:center;padding:16px}
+.app{width:min(94vw,560px);background:#fff;border-radius:28px;padding:28px;box-shadow:0 18px 60px #5d416520;overflow:hidden}
+.page{display:none}.page.active{display:block;animation:in .3s ease}@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+h1{font-size:clamp(28px,8vw,42px);margin:8px 0 12px;text-align:center}.sub{text-align:center;color:#756b7e;margin:0 0 24px}
+.actions{display:flex;justify-content:center;gap:12px;min-height:62px;position:relative}.btn{border:0;border-radius:16px;padding:14px 22px;font-size:17px;font-weight:800;cursor:pointer;-webkit-tap-highlight-color:transparent}.yes{background:#ff4f7b;color:#fff}.no{background:#eee8ef;color:#51475a}
+.hint{text-align:center;font-size:13px;color:#9a8fa0;margin-top:12px}
+.calendar-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.calendar-head button{border:0;background:#f2edf5;border-radius:12px;padding:9px 14px;font-size:22px}.month{font-weight:850;text-transform:capitalize}
+.week,.days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.week div{text-align:center;font-size:12px;color:#8c8191;padding:5px}.day{border:0;background:#faf8fb;border-radius:11px;padding:10px 0;cursor:pointer;font-weight:600}.day.selected{background:#ff4f7b;color:#fff}.day.today{outline:2px solid #ffd0dc}.empty{background:transparent!important}
+.times{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}.time{border:1px solid #e6dfe9;background:#fff;border-radius:13px;padding:12px 4px;cursor:pointer;font-weight:800}.time.selected{background:#292333;color:#fff;border-color:#292333}
+.next{width:100%;margin-top:20px;background:#292333;color:#fff}.next:disabled{opacity:.35;cursor:not-allowed}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}.choice{border:1px solid #e5dde8;background:#fff;border-radius:17px;padding:16px 12px;text-align:left;cursor:pointer;font-size:16px;font-weight:800}.choice span{display:block;font-size:27px;margin-bottom:6px}.choice small{display:block;font-size:12px;font-weight:600;color:#8c8191;line-height:1.3;margin-top:5px}.choice.selected{border:2px solid #ff4f7b;background:#fff3f6}
+
+ .road{height:300px;position:relative;margin:15px -28px 20px;overflow:hidden;border-radius:0;background:linear-gradient(#71c8f4 0 46%,#8bcf78 46% 62%,#4a4a4f 62% 100%);}
+.drive-scene{position:absolute;inset:0;overflow:hidden;}
+.speed-lines{position:absolute;z-index:2;left:0;right:0;bottom:31%;height:70px;opacity:.22;background:repeating-linear-gradient(180deg,transparent 0 10px,#fff 10px 12px,transparent 12px 24px);transform:skewX(-18deg);animation:speedMove .45s linear infinite;}
+@keyframes speedMove{from{translate:0 0}to{translate:-90px 0}}
+.sky-layer{position:absolute;inset:0;width:220%;height:62%;animation:worldMove 14s linear infinite;background:linear-gradient(180deg,transparent 0 55%,rgba(255,255,255,.12) 55% 56%,transparent 56%);}
+.sky-layer:before{content:"";position:absolute;inset:12% 0 auto;height:95px;background:radial-gradient(circle at 8% 45%,#fff 0 18px,transparent 19px),radial-gradient(circle at 10% 45%,#fff 0 27px,transparent 28px),radial-gradient(circle at 14% 48%,#fff 0 20px,transparent 21px),radial-gradient(circle at 40% 30%,#fff 0 18px,transparent 19px),radial-gradient(circle at 43% 32%,#fff 0 28px,transparent 29px),radial-gradient(circle at 48% 32%,#fff 0 18px,transparent 19px);}
+.hills{position:absolute;left:0;bottom:17%;width:220%;height:42%;animation:worldMove 14s linear infinite;background:linear-gradient(150deg,transparent 0 20%,#5d8d91 20% 33%,transparent 33% 100%),linear-gradient(30deg,transparent 0 34%,#527d80 34% 47%,transparent 47% 100%);}
+.sea{position:absolute;left:0;bottom:17%;width:220%;height:27%;animation:worldMove 11s linear infinite;background:repeating-linear-gradient(0deg,#168fc9 0 6px,#27a7db 6px 10px,#168fc9 10px 15px);opacity:.95;}
+.trees{position:absolute;left:0;bottom:17%;width:220%;height:45%;animation:worldMove 7s linear infinite;}
+.tree{position:absolute;bottom:0;width:22px;height:95px;background:#8b542e;border-radius:8px;}
+.tree:before{content:"";position:absolute;left:-38px;top:-40px;width:100px;height:75px;background:#277d3f;clip-path:polygon(50% 0,100% 100%,0 100%);filter:drop-shadow(0 4px 0 #1e6835);}
+.t1{left:7%}.t2{left:23%;transform:scale(1.25)}.t3{left:42%;transform:scale(.85)}.t4{left:61%;transform:scale(1.35)}.t5{left:80%;transform:scale(.95)}.t6{left:98%;transform:scale(1.2)}.t7{left:117%;transform:scale(.9)}.t8{left:137%;transform:scale(1.3)}.t9{left:157%;transform:scale(.8)}.t10{left:178%;transform:scale(1.15)}
+.village{position:absolute;bottom:17%;width:220%;height:32%;animation:worldMove 9s linear infinite;}
+.house{position:absolute;bottom:0;width:64px;height:48px;background:#f4d9bc;border:3px solid #fff;border-radius:7px 7px 0 0;box-shadow:inset 0 -10px 0 #d9b7a0;}
+.house:before{content:"";position:absolute;left:-5px;top:-17px;border-left:37px solid transparent;border-right:37px solid transparent;border-bottom:20px solid #d36a52;}
+.h1{left:14%}.h2{left:29%;transform:scale(.8)}.h3{left:46%;transform:scale(1.2)}.h4{left:67%;transform:scale(.9)}.h5{left:84%;transform:scale(1.1)}.h6{left:104%;transform:scale(.75)}.h7{left:124%;transform:scale(1.15)}.h8{left:146%;transform:scale(.85)}.h9{left:166%;transform:scale(1.2)}.h10{left:188%;transform:scale(.9)}
+.road-surface{position:absolute;left:0;right:0;bottom:0;height:39%;background:#47484d;}
+.road-lines{position:absolute;left:0;bottom:13%;width:220%;height:10px;animation:roadMove .8s linear infinite;background:repeating-linear-gradient(90deg,#fff 0 58px,transparent 58px 112px);}
+.guard{position:absolute;left:0;bottom:36%;width:220%;height:10px;animation:worldMove 4s linear infinite;background:repeating-linear-gradient(90deg,#bfc3c5 0 110px,#707579 110px 116px);box-shadow:0 5px 0 #555;}
+.car{position:absolute;z-index:10;bottom:27px;left:50%;transform:translateX(-50%);width:170px;height:70px;filter:drop-shadow(0 8px 5px #0007);animation:carBob .72s ease-in-out infinite alternate;}
+.car-body{position:absolute;left:0;bottom:8px;width:170px;height:49px;background:linear-gradient(#f34b4f 0 18%,#d9343d 18% 82%,#a92731 82%);border:4px solid #202127;border-radius:16px 22px 9px 9px;box-shadow:inset 0 -5px 0 #8e242c;}
+.car-body:before{content:"";position:absolute;left:35px;top:-27px;width:91px;height:31px;background:#df3b43;border:4px solid #202127;border-bottom:0;border-radius:25px 30px 0 0;}
+.window{position:absolute;z-index:3;top:9px;height:21px;background:linear-gradient(135deg,#8ed0e8,#3e718d 55%,#9bd8eb);border:3px solid #202127;}
+.rear-window{left:42px;width:36px;transform:skewX(-10deg);border-radius:7px 2px 2px 4px;}
+.front-window{left:81px;width:39px;transform:skewX(10deg);border-radius:2px 7px 4px 2px;}
+.windshield{position:absolute;z-index:4;left:116px;top:9px;width:22px;height:23px;background:#4d849d;border:3px solid #202127;transform:skewX(17deg);border-radius:2px 8px 2px 2px;}
+.door{position:absolute;z-index:5;top:24px;height:19px;border-right:2px solid #8d242c;}.d1{left:77px}.d2{left:119px}.handle{position:absolute;z-index:6;top:28px;width:10px;height:3px;background:#e9b7a0;border-radius:2px}.hnd1{left:101px}.hnd2{left:132px}.mirror{position:absolute;z-index:7;left:133px;top:-4px;width:9px;height:6px;background:#202127;border-radius:3px;transform:skewX(-15deg);}
+.hood{position:absolute;right:-2px;top:13px;width:37px;height:4px;background:#f96b6b;border-radius:4px;}.bumper{position:absolute;bottom:-7px;height:8px;background:#202127;border-radius:4px}.bumper.front{right:-7px;width:22px}.bumper.rear{left:-7px;width:18px}
+.wheel{position:absolute;z-index:10;bottom:-11px;width:34px;height:34px;background:#17181c;border-radius:50%;border:4px solid #34363b;box-shadow:inset 0 0 0 4px #a4a7aa,inset 0 0 0 8px #34363b;}
+.wheel:after{content:"";position:absolute;left:9px;top:9px;width:8px;height:8px;border-radius:50%;background:#c7c9ca;box-shadow:0 0 0 2px #666;}.w1{left:22px}.w2{right:20px}
+.headlight,.taillight{position:absolute;z-index:11;top:38px;width:7px;height:12px;border:2px solid #202127;border-radius:3px}.headlight{right:-2px;background:#fff1a6}.taillight{left:-2px;background:#e74b55}
+@keyframes worldMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes roadMove{from{transform:translateX(0)}to{transform:translateX(-112px)}}
+@keyframes carBob{from{translate:0 0}to{translate:0 -2px}}
+.final{text-align:center}.final h2{font-size:30px;margin:0 0 10px;opacity:0;transform:translateY(8px)}.final.ready h2{animation:popIn .55s .12s ease-out forwards}.summary{background:#fff5f8;border-radius:18px;padding:16px;margin-top:15px;font-weight:700;opacity:0;transform:translateY(8px)}.final.ready .summary{animation:popIn .55s .34s ease-out forwards}.final #message{opacity:0;transform:translateY(8px)}.final.ready #message{animation:popIn .55s .22s ease-out forwards}.emailbox{opacity:0;transform:translateY(8px)}.final.ready .emailbox{animation:popIn .55s .48s ease-out forwards}@keyframes popIn{to{opacity:1;transform:none}}.emailbox{margin-top:18px;text-align:left}.emailbox label{display:block;font-weight:800;margin-bottom:7px}.emailbox input{width:100%;padding:14px;border:1px solid #ddd4e1;border-radius:13px;font-size:16px}.emailbox input.fixed-email{background:#ececec;color:#666;cursor:not-allowed}.send{width:100%;margin-top:12px;background:#ff4f7b;color:#fff}
+.modalback{position:fixed;inset:0;background:#0007;display:none;align-items:center;justify-content:center;padding:22px;z-index:20}.modalback.show{display:flex}.modal{background:#fff;border-radius:24px;padding:25px;max-width:400px;width:100%;box-shadow:0 20px 60px #0004;text-align:center}.modal h2{font-size:24px;margin:0 0 10px}.modal p{color:#665d6b;line-height:1.45}.modal-actions{display:flex;gap:10px}.modal-actions button{flex:1}.retry{background:#292333;color:#fff}.confirm{background:#eee8ef;color:#51475a}
+</style>
+</head>
+<body>
+<main class="app">
+<section id="p1" class="page active">
+<h1>Morgane ❤️</h1>
+<p class="sub">Veux-tu sortir avec moi un soir ?</p>
+<div class="actions">
+<button id="yesBtn" class="btn yes">OUI ❤️</button>
+<button id="noBtn" class="btn no">NON</button>
+</div>
+<p class="hint">Un petit clic pour commencer… 😊</p>
+</section>
+
+<section id="p2" class="page">
+<h1>Alors, quand ? 📅</h1><p class="sub">Choisis une date <b>et</b> une heure.</p>
+<div class="calendar-head"><button id="prev">‹</button><div id="monthName" class="month"></div><button id="nextMonth">›</button></div>
+<div class="week"><div>Lun</div><div>Mar</div><div>Mer</div><div>Jeu</div><div>Ven</div><div>Sam</div><div>Dim</div></div>
+<div id="days" class="days"></div><div id="times" class="times"></div>
+<button id="dateNext" class="btn next" disabled>Choisir la suite ❤️</button>
+</section>
+
+<section id="p3" class="page">
+<h1>On mange quoi ? 🍽️</h1><p class="sub">Choisis ton restaurant.</p>
+<div class="choices">
+<button class="choice" data-food="un bon fast-food"><span>🍔</span>Fast-food<small>Un bon burger et zéro prise de tête 😋</small></button>
+<button class="choice" data-food="un bon bistrot français"><span>🥖</span>Bistrot français<small>Une petite adresse bien française 🇫🇷</small></button>
+<button class="choice" data-food="un bon steakhouse"><span>🥩</span>Steakhouse<small>Pour les amateurs de bonne viande 🔥</small></button>
+<button class="choice" data-food="un bon buffet à volonté"><span>🍽️</span>Buffet à volonté<small>On goûte un peu à tout 😋</small></button>
+<button class="choice" data-food="un bon bar à tapas"><span>🍷</span>Bar à tapas<small>Plein de petites choses à partager 🫒</small></button>
+<button class="choice" data-food="un bon restaurant asiatique"><span>🥢</span>Restaurant asiatique<small>Un petit voyage dans l'assiette 🌏</small></button>
+</div>
+<button id="foodNext" class="btn next" disabled>Valider ❤️</button>
+</section>
+
+<section id="p4" class="page final">
+<div class="road" aria-label="Petite scène de conduite rétro Sega">
+  <div class="drive-scene">
+    <div class="speed-lines" aria-hidden="true"></div>
+    <div class="sky-layer"></div>
+    <div class="hills"></div>
+    <div class="sea"></div>
+    <div class="village"><span class="house h1"></span><span class="house h2"></span><span class="house h3"></span><span class="house h4"></span><span class="house h5"></span><span class="house h6"></span><span class="house h7"></span><span class="house h8"></span><span class="house h9"></span><span class="house h10"></span></div>
+    <div class="trees"><span class="tree t1"></span><span class="tree t2"></span><span class="tree t3"></span><span class="tree t4"></span><span class="tree t5"></span><span class="tree t6"></span><span class="tree t7"></span><span class="tree t8"></span><span class="tree t9"></span><span class="tree t10"></span></div>
+    <div class="guard"></div>
+    <div class="road-surface"></div>
+    <div class="road-lines"></div>
+  </div>
+  <div class="car">
+  <div class="car-body"><span class="hood"></span><span class="door d1"></span><span class="door d2"></span><span class="handle hnd1"></span><span class="handle hnd2"></span><span class="mirror"></span><span class="bumper front"></span><span class="bumper rear"></span></div>
+  <div class="window rear-window"></div><div class="window front-window"></div><div class="windshield"></div>
+  <span class="headlight"></span><span class="taillight"></span><i class="wheel w1"></i><i class="wheel w2"></i>
+</div>
+</div>
+<h2>Parfait ❤️</h2>
+<p id="message"></p>
+<div id="summary" class="summary"></div>
+<div class="emailbox">
+<label for="email">Ton adresse e-mail :</label>
+<input id="email" type="email" placeholder="tonadresse@email.com" autocomplete="email">
+<button id="send" class="btn send">📩 Envoyer ma réponse</button>
+<p class="hint">Entre l'adresse e-mail à laquelle tu veux envoyer la réservation ❤️</p>
+</div>
+</section>
+</main>
+
+<div id="modalBack" class="modalback">
+<div class="modal">
+<h2>Tu es sûre ? 😏</h2>
+<p>Tu as cliqué sur NON… Tu es vraiment sûre de ne pas vouloir aller au restaurant ? 😏</p>
+<div class="modal-actions"><button id="retry" class="btn retry">Réessayer ❤️</button><button id="confirmNo" class="btn confirm">Oui, je confirme</button></div>
+</div>
+</div>
+
+<script>
+let selectedDate=null, selectedTime=null, selectedFood=null;
+let view=new Date(); view.setDate(1);
+const months=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+const $=id=>document.getElementById(id);
+
+function go(n){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$("p"+n).classList.add("active");if(n===2)renderCal();}
+
+let trapCount=0;
+
+function setYesHandler(handler){
+  const b=$("yesBtn");
+  b.textContent="OUI ❤️";
+  b.className="btn yes";
+  b.onclick=handler;
+}
+
+function showNoTrap(){
+  const b=$("yesBtn");
+  b.textContent="NON";
+  b.className="btn no";
+  b.onclick=()=>$("modalBack").classList.add("show");
+  $("modalBack").classList.add("show");
+}
+
+function handleYes(){
+  // Les 2 premiers clics sur OUI sont piégés.
+  // Le 3e clic sur OUI ouvre réellement le calendrier.
+  if(trapCount < 2){
+    trapCount++;
+    showNoTrap();
+  } else {
+    go(2);
+  }
+}
+
+setYesHandler(handleYes);
+$("noBtn").onclick=()=>$("modalBack").classList.add("show");
+
+$("retry").onclick=()=>{
+  $("modalBack").classList.remove("show");
+  // Après chaque Réessayer, OUI revient.
+  // Le compteur ne bouge qu'au clic sur OUI, donc : OUI / Réessayer / OUI / Réessayer / OUI = calendrier.
+  setYesHandler(handleYes);
+};
+
+$("confirmNo").onclick=()=>{
+  $("modalBack").classList.remove("show");
+  // Confirmer le NON ne fait pas avancer : on laisse simplement recommencer.
+  setYesHandler(handleYes);
+};
+
+$("prev").onclick=()=>{view.setMonth(view.getMonth()-1);renderCal()};
+$("nextMonth").onclick=()=>{view.setMonth(view.getMonth()+1);renderCal()};
+
+function renderCal(){
+ $("monthName").textContent=months[view.getMonth()]+" "+view.getFullYear();
+ const days=$("days");days.innerHTML="";
+ const first=(view.getDay()+6)%7,count=new Date(view.getFullYear(),view.getMonth()+1,0).getDate();
+ for(let i=0;i<first;i++){let e=document.createElement("button");e.className="day empty";days.appendChild(e)}
+ for(let d=1;d<=count;d++){
+  let b=document.createElement("button");b.className="day";b.textContent=d;
+  let val=new Date(view.getFullYear(),view.getMonth(),d);
+  if(selectedDate&&val.toDateString()===selectedDate.toDateString())b.classList.add("selected");
+  let today=new Date();if(val.toDateString()===today.toDateString())b.classList.add("today");
+  b.onclick=()=>{selectedDate=val;renderCal()};days.appendChild(b);
+ }
+ $("times").innerHTML="";
+ ["19h00","19h30","20h00","20h30"].forEach(t=>{let b=document.createElement("button");b.className="time";b.textContent=t;if(t===selectedTime)b.classList.add("selected");b.onclick=()=>{selectedTime=t;renderCal()};$("times").appendChild(b)});
+ $("dateNext").disabled=!(selectedDate&&selectedTime);
+}
+$("dateNext").onclick=()=>{if(selectedDate&&selectedTime)go(3)};
+
+document.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{document.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");selectedFood=b.dataset.food;$("foodNext").disabled=false});
+$("foodNext").onclick=()=>{if(selectedFood)finish()};
+
+function finish(){
+ const date=selectedDate.toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});
+ $("message").textContent="Parfait ! Prépare-toi pour "+date+" à "+selectedTime+", je viens te chercher pour manger "+selectedFood+" !";
+ $("summary").textContent="📅 "+date+" · 🕐 "+selectedTime+" · 🍽️ "+selectedFood;
+ go(4); document.getElementById("p4").classList.remove("ready"); requestAnimationFrame(()=>requestAnimationFrame(()=>document.getElementById("p4").classList.add("ready")));
+}
+
+$("send").onclick=()=>{
+  const email=$("email").value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    alert("Entre une adresse e-mail valide ❤️");
+    $("email").focus();
+    return;
+  }
+  const date=selectedDate.toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});
+  const subject=encodeURIComponent("Réponse de Morgane ❤️");
+  const body=encodeURIComponent("Morgane a choisi :\n\nDate : "+date+"\nHeure : "+selectedTime+"\nRestaurant : "+selectedFood+"\n\nÀ bientôt ❤️");
+  window.location.href="mailto:"+encodeURIComponent(email)+"?subject="+subject+"&body="+body;
+};
+</script>
+</body>
+</html>
